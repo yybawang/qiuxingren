@@ -1,0 +1,53 @@
+<layout name="layout" />
+<!-- 宽 100% -->
+<div class="iframe_Ip">
+	<table cellpadding="0" cellspacing="1">
+		<tr>
+			<th>编号</th>
+			<th>删</th>
+			<th>ID</th>
+			<th>user_id</th>
+			<th>IP</th>
+			<th>页面来源</th>
+			<th>添加时间</th>
+		</tr>
+		<foreach name="ips" item="ip">
+		<tr>
+			<td class="numbers" width="40">{$key+1}</td>
+			<td class="align_center"><input type="checkbox" name="checkbox" value="{$ip.id}" /></td>
+			<td>{$ip.id}</td>
+			<td>{$ip.user_id}</td>
+			<td>{$ip.ip}</td>
+			<td>{$ip.action}</td>
+			<td>{$ip.add_time}</td>
+		</tr>
+		</foreach>
+		<tr><td></td><td><a href="javascript:;" id="full_check">全选</a><br /><a href="javascript:;" id="double_del">删除</a></td>
+		<td colspan="5">
+			{$pager}
+		</td></tr>
+	</table>
+</div>
+
+<script>
+$(function(){
+	full_check({
+		clicker : '#full_check',
+		selecter : '[name=checkbox]'
+	});
+	
+	double_del({
+		clicker : '#double_del',
+		selecter : '[name=checkbox]',
+		model : 'ip',
+		field : 'id',
+		url : '__GROUP__/index/double_del'
+	});
+	
+	y_pager({
+		selecter : '.y_pager'
+	});
+	
+	
+});
+</script>

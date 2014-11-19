@@ -1,0 +1,72 @@
+<include file="public/head" charset="utf-8" title='{$title}' />
+<div class="send">
+	<div class="sender">
+		<div class="left">
+			<form action="__GROUP__/Send/add" enctype="multipart/form-data" method="post">
+				<table cellpadding="0" cellspacing="0">
+					<tr><td colspan="3"><textarea name="content" class="textarea" placeholder="分享一件新鲜事儿..."></textarea></td></tr>
+					<tr><td width="50">照片:</td><td><input type="file" class="upload_image" name="image[]" /></td><td width="130"><a class="a add_image" href="javascript:void(0);">添加照片</a></td></tr>
+					<tr><td colspan="2">
+						<span><input type="radio" checked="checked" value="0" name="zone" id="z0" /></span><span><label for="z0">糗事一枚</label></span>
+						<span><input type="radio" value="1" name="zone" id="z1" /></span><span><label for="z1">{$Think.config.z1.word}</label></span>
+						<span><input type="radio" value="2" name="zone" id="z2" /></span><span><label for="z2">{$Think.config.z2.word}</label></span>
+						<span><input type="radio" value="3" name="zone" id="z3" /></span><span><label for="z3">{$Think.config.z3.word}</label></span>
+					</td><td><span><input type="checkbox" name="hid_me" value="1" id="hid_me" /></span><span><label class="hid_me" for="hid_me">匿名投稿</label></span></td></tr>
+					<tr><td colspan="3"><input type="submit" id="subm" value="投递" /></td></tr>
+				</table>
+			</form>
+		</div>
+		<div class="right">
+			<h3>投稿须知</h3>
+			<ul>
+				<li>自己的或朋友的糗事，真实有笑点，不含政治、色情、广告、诽谤、歧视等内容。</li>
+				<li>糗事经过审核后发表。</li>
+				<li>转载请注明出处。</li>
+				<li>投稿内容著作权、版权归糗星人网站所有。</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<script>
+$(function(){
+//添加和删除相片
+	var img_sum = 1;
+	$(".add_image").click(function(){
+		if(img_sum < 5){
+			$(this).closest("table").find("tr").eq(-3).after('<tr><td>照片:</td><td><input type="file" class="upload_image" name="image[]" /></td><td><a class="a del_image" href="javascript:void(0);">删除</a></td></tr>');
+			img_sum++;
+		}else{
+			$(this).fadeOut(1).text("最多五张").fadeIn(2000,function(){
+				$(this).text("添加图片");
+			});
+		}
+	});
+	$('.del_image').live("click",function(){
+		$(this).closest("tr").remove();
+		img_sum--;
+	});
+	
+	//控制提交错误，避免出错返回写的文字又空了。。。
+	$(".left form").submit(function(){
+		var content = $('[name="content"]').val();
+		if(!content){
+			$('[name="content"]').focus().attr("placeholder","写点什么吧!!");
+			$.dialog({
+				title:'提示',
+				skin:'blue',
+				content: '写点儿什么吧！！！',
+				padding:'20px',
+				min:false,
+				max:false,
+				lock:true,
+				fixed:true,
+				cancel:true,
+				cancelVal: '关闭'
+			});
+			return false;
+		}
+	});
+});
+</script>
+
+<include file="public/foot" />

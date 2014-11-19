@@ -1,0 +1,136 @@
+<include file="public/head" charset="utf-8" title="{$title}" />
+
+
+<div class="content">
+	<div class="left">
+		<foreach  name="article_data" item="data" >
+		<div class="L_content">
+			<!--<div class="L_option">
+				<ul class="sf-menu" a_id = "{$data.id}">
+					<li><a href="javascript:;">自助</a>
+					<ul>
+						<li><a href="javascript:;">举报</a>
+							<ul class="report">
+								<li><a href="javascript:;">反动</a></li>
+								<li><a href="javascript:;">黄色暴力</a></li>
+								<li><a href="javascript:;">与网站无关</a></li>
+							</ul>
+						</li>
+						<li><a href="javascript:;">移动到区</a>
+							<ul class="move">
+							<foreach name="Think.config.ZONE" item="conf">
+								<li><a href="javascript:;" zone="{$key+1}">{$conf.word}</a></li>
+							</foreach>
+							</ul>
+						</li>
+					</ul>
+					</li>
+				</ul>
+			</div>-->
+			<if condition="$data.pic != null">
+			<div class="L_user">
+				<span class="pic">
+				<a href="javascript:;" title="关注Ta">
+					<img class="img" src="{$data.pic}" />
+					<span class="guanzhu"></span>
+				</a>
+				</span>
+				<span class="former_user_name"><a u_id="{$data.former_user_id}" title="发送小纸条" href="javascript:;">{$data.former_user_name}</a></span>
+			</div>
+			</if>
+			<div class="L_text">
+				{$data.content}
+			</div>
+			<foreach  name="data.image" item="img" >
+			<div class="L_image">
+			<a title="糗星人" alt="糗星人，图片正在加载中">
+				<img src="{$img.image_link}" />
+			</a>
+			</div>
+			</foreach>
+			
+			<div class="L_bar">
+				<ul>
+				<li class="up"><span class="up_span" a_id="{$data.id}"><empty name="data['up']">0<else />{$data.up}</empty></span></li>
+				<li class="down"><span class="down_span" a_id="{$data.id}"><empty name="data['down']">0<else />{$data.down}</empty></span></li>
+				<li class="space">{$data.add_time|format_time}</li>
+				<li class="comment" a_id="{$data.id}"><span on="0">评论 {$data.comment_count}</span></li>
+				</ul>
+			</div>
+			
+		</div>
+		</foreach >
+		<div id="kkpager">
+			
+		</div>
+		<div class="tips">按 ← → 方向键翻页看更爽</div>
+	</div>
+	<include file="public/index_right" />
+</div>
+
+
+<div class="jump">
+	<ul>
+		<li class="gotop">到顶部</li>
+		<li class="godown">到底部</li>
+	</ul>
+</div>
+
+
+<script>
+$(function(){
+	//左右翻页
+	trun_page({
+		page_num : "{$pages.page_num}",
+		page : "{$Think.get.page}"
+	});
+	//分页init
+	page_init({
+		page_num : "{$pages.page_num}",
+		article_num : "{$pages.num}",
+		this_page : "{$Think.get.page}",
+		action : "__ACTION__"
+	});
+	//显示留言
+	get_comment({
+		post_url : '__GROUP__/article/comment',
+		user_url : '__GROUP__/user/user_info'
+	});
+	//提交留言
+	send_comment({
+		post_url : '__GROUP__/article/add_comment',
+	});
+	//小纸条
+	message({
+		user_id : "{$G_u.user_id}",
+		post_url : "/message/send"
+	});
+	//顶和囧
+	up({
+		post_url : '__GROUP__/article/up'
+	});
+	down({
+		post_url : '__GROUP__/article/down'
+	});
+	//举报
+	report({
+		post_url : '__GROUP__/article/report'
+	});
+	//移动版区事件
+	move_zone({
+		post_url : '__GROUP__/article/move_zone'
+	});
+	//关注用户
+	follow({
+		dom : '.L_user .pic > a',
+		post_url : '/follow/following'
+	});
+	// 文章右边的操作无限级Jquery
+	$('ul.sf-menu').superfish();
+	//图片放大缩小浏览
+	iviewer({
+		dom : ".L_image a"
+	});
+});
+</script>
+<include file="public/foot" />

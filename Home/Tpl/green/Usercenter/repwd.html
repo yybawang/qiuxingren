@@ -1,0 +1,26 @@
+<include file="public/head" charset="utf-8" title='{$title}' />
+
+<div class="user">
+<include file="Usercenter/u_top" />
+	<div class="ucenter">
+		<include file="UserCenter/u_left" />
+		<div class="right">
+			<div class="righter">
+				<form action="__URL__/repwd" method="post">
+					
+					<div class="old_pwd">&emsp;&emsp;&emsp;&emsp;原密码：<input type="password" name="old_pwd" class="input_text" /><span class="old_span"></span></div>
+					<div class="new_pwd">&emsp;&emsp;&emsp;&emsp;新密码：<input type="password" name="new_pwd" class="input_text" /><span class="new_span"></span></div>
+					<div class="new_pwd">再次输入新密码：<input type="password" name="new_pwd2" class="input_text" /><span class="new_span2"></span></div>
+					<div class="sub"><input id="sub" type="submit" value="提交" /></div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$(function(){	
+	repwd_form();
+});
+</script>
+<div class="clean"></div>
+<include file="public/foot" />

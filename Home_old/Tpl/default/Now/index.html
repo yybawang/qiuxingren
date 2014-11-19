@@ -1,0 +1,129 @@
+<include file="public/head" charset="utf-8" title="{$title}" />
+<div class="content">
+	<div class="left">
+		<foreach  name="content" item="data" >
+		<div class="L_content">
+			<div class="L_option">
+				<ul class="sf-menu" a_id = "{$data.article_id}">
+					<li><a href="javascript:;">操作</a>
+					<ul>
+						<li><a href="javascript:;">举报</a>
+							<ul class="report">
+								<li><a href="javascript:;">反动</a></li>
+								<li><a href="javascript:;">黄色暴力</a></li>
+								<li><a href="javascript:;">与网站无关</a></li>
+							</ul>
+						</li>
+						<li><a href="javascript:;">移动到区</a>
+							<ul class="move">
+								<li><a href="javascript:;" zone="1">{$Think.config.z1.word}</a></li>
+								<li><a href="javascript:;" zone="2">{$Think.config.z2.word}</a></li>
+								<li><a href="javascript:;" zone="3">{$Think.config.z3.word}</a></li>
+							</ul>
+						</li>
+					</ul>
+					</li>
+				</ul>
+			</div>
+			<if condition="$data.pic != null">
+			<div class="L_user">
+				<img class="pic" src="{$data.pic}" /><span class="former_user_name"><a u_id="{$data.former_user_id}" title="发送小纸条" href="javascript:void(0)">{$data.former_user_name}</a></span>
+			</div>
+			</if>
+			<div class="L_text">
+				{$data.content}
+			</div>
+			<if condition="$data.image neq null">
+				<foreach  name="data.image" item="img" >
+				<div class="L_image">
+				<a title="糗星人" alt="糗星人，图片正在加载中">
+				<if condition="$data.former_id gt 0" >
+					<img src="{$img.image_link}" />
+				<else />
+					<img src="__PUBLIC__{$img.image_link}" />
+				</if>
+				</a>
+				</div>
+				</foreach>
+			</if>
+			
+			<div class="L_bar">
+				<ul>
+				<li class="up"><span class="up_span" a_id="{$data.article_id}"><empty name="data['up']">0<else />{$data.up}</empty></span></li>
+				<li class="down"><span class="down_span" a_id="{$data.article_id}"><empty name="data['down']">0<else />{$data.down}</empty></span></li>
+				<li class="space" style="width:372px;"></li>
+				<li class="share"><span>
+				</span>
+				
+				
+				</li>
+				</ul>
+			</div>
+			
+		</div>
+		</foreach >
+		<div id="kkpager">
+		</div>
+		<div class="tips">按 ← → 方向键翻页看更爽</div>
+
+	</div>
+	<include file="public/index_right" />
+</div>
+
+<div class="jump">
+	<ul>
+		<li class="gotop">到顶部</li>
+		<li class="godown">到底部</li>
+	</ul>
+</div>
+
+<script>
+$(function(){
+	//左右翻页
+	trun_page({
+		page : "{$Think.get.page}",
+		page_num : "2000"
+	});
+	//小纸条
+	message({
+		user_id : "{$Think.session.tsuser.userid}",
+		post_url : "__GROUP__/Message/send",
+		log_url : "__GROUP__/User/login"
+	});
+	//顶和囧
+	up({
+		post_url : '__GROUP__/Index/up'
+	});
+	down({
+		post_url : '__GROUP__/Index/down'
+	});
+	//分页init
+	page_init({
+		page_num : "2000",
+		article_num : "4000",
+		this_page : "{$Think.get.page}",
+		action : "__ACTION__"
+	});
+	//显示留言
+	get_comment({
+		post_url : '__GROUP__/Index/comment',
+		public_dir : "__PUBLIC__",
+		user_url : '__GROUP__/User/user_info'
+	});
+	//提交留言
+	send_comment({
+		post_url : '__GROUP__/Index/add_comment',
+		public_dir : "__PUBLIC__",
+		user_url : '__GROUP__/User/user_info'
+	});
+	//举报
+	report({
+		post_url : '__GROUP__/Index/report'
+	});
+	//移动版区事件
+	move_zone({
+		post_url : '__GROUP__/Index/move_zone'
+	});
+});
+</script>
+<include file="public/foot" />

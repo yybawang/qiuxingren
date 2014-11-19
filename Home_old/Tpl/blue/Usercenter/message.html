@@ -1,0 +1,37 @@
+<include file="public/head" charset="utf-8" title="{$title}" />
+
+<div class="user">
+	<div class="ucenter">
+		<include file="UserCenter/u_left" />
+		<div class="right">
+			<div class="righter">
+			<notempty name="content">
+				<!-- text循环 -->
+				<foreach name="content" item="data">
+				<div class="text">
+				<div class="single"><a title="按住此按钮删除" class="del_message option a" a_id="{$data.message_id}" href="javascript:;">删除</a></div>
+					<!-- <img width="20" height="20" src="__PUBLIC__{$data.from.pic}" /> -->
+					<a class="a user_info" u_id="{$data.from.user_id}" href="__URL__/user_info">{$data.from.user_name}</a>：{$data.content}
+					<span class="date">{$data.add_time|date="Y-m-d H:i:s",###}</span>
+				</div>
+				</foreach>
+			<else />
+				<p class="uc_empty">空空如也哦~~~</p>
+			</notempty>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	//划过显示用户信息
+	user_info({
+		dom : '.text a.user_info',
+		public_dir : '__PUBLIC__',
+		post_url : '__GROUP__/UserCenter/user_info_ajax'
+	});
+	del_article({
+		post_url : '__GROUP__/Usercenter/del_message_ajax',
+		dom : '.del_message'
+	});
+</script>
+<include file="public/foot" />

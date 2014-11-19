@@ -1,0 +1,91 @@
+<include file="public/head" charset="utf-8" title="{$title}" />
+
+
+<div class="content">
+	<div class="left">
+		<foreach  name="article_data" item="data" >
+		<div class="L_content">
+			
+			<if condition="$data.pic != ''">
+			<div class="L_user">
+				<span class="pic">
+				<a href="javascript:;" title="关注Ta">
+					<img class="img" src="{$data.pic}" />
+					<span class="guanzhu"></span>
+				</a>
+				</span>
+				<span class="former_user_name"><a u_id="{$data.former_user_id}" title="发送小纸条" href="javascript:;">{$data.former_user_name}</a></span>
+			</div>
+			</if>
+			<div class="L_text">
+				{$data.content}
+			</div><br />
+			<notempty name="data.image" >
+			<div class="L_image">
+			<a title="糗星人" alt="糗星人，图片正在加载中">
+				<img src="{$data.image}" />
+			</a>
+			</div>
+			</notempty>
+			
+			<div class="L_bar">
+				<ul>
+				<li class="up"><span class="up_span" a_id="{$data.id}"><empty name="data['up']">0<else />{$data.up}</empty></span></li>
+				<li class="down"><span class="down_span" a_id="{$data.id}"><empty name="data['down']">0<else />{$data.down}</empty></span></li>
+				<li class="space">{$data.add_time|format_time}</li>
+				<li class="comment" a_id="{$data.id}"><span on="0">评论 {$data.comment_count}</span></li>
+				</ul>
+			</div>
+			
+		</div>
+		</foreach >
+		<div class="load"><span class="loadimg"></span><span class="loadtext">Loading...</span></div>
+	</div>
+	<include file="public/index_right" />
+</div>
+
+
+<div class="jump">
+	<ul>
+		<li class="gotop">到顶部</li>
+		<li class="godown">到底部</li>
+	</ul>
+</div>
+
+
+<script>
+$(function(){
+	//显示留言
+	get_comment({
+		post_url : '__GROUP__/article/comment',
+		user_url : '__GROUP__/user/user_info'
+	});
+	//提交留言
+	send_comment({
+		post_url : '__GROUP__/article/add_comment',
+	});
+	//小纸条
+	message({
+		post_url : "__GROUP__/message/send",
+		log_url : "__GROUP__/user/login"
+	});
+	//顶和囧
+	up({
+		post_url : '__GROUP__/article/up'
+	});
+	down({
+		post_url : '__GROUP__/article/down'
+	});
+	//关注用户
+	follow({
+		dom : '.L_user .pic > a',
+		log_url : "__GROUP__/user/login",
+		post_url : '__GROUP__/follow/following'
+	});
+	//瀑布流加载内容
+	next_page({
+		post_url : '__ACTION__',
+	});
+});
+</script>
+<include file="public/foot" />

@@ -1,0 +1,41 @@
+<div class="right">
+	<div class="righter">
+		<h3>网站主题</h3>
+			<div class="theme">
+			<php>
+				$theme = explode(',',C('THEME_LIST'));
+			</php>
+			<foreach name="theme" item="theme_list">
+				<span class="theme_{$theme_list}"><a title="{$theme_list}" href="__ACTION__/t/{$theme_list}">&nbsp;</a></span>
+			</foreach>
+			</div>
+		<div>
+			<ul>
+			<li>你造吗？划过用户头像可以关注 Ta 哦！</li>
+			<li>文章图片太小？单击一下图片可以放大缩小哦！</li>
+			<li>翻页太烦？使用 green 主题可以无限下拉看啦！</li>
+			<li>有问题？有建议？<a class="a" target="_blank" href="__GROUP__/article/proposal">反馈</a> 给我，我会耐心查看！</li>
+			</ul>
+		</div>
+	</div>
+</div>
+	
+<script>
+$(function(){
+	//固定的电梯
+	elevator({
+		speed : 800
+	});
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+

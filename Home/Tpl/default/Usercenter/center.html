@@ -1,0 +1,62 @@
+<include file="public/head" charset="utf-8" title="{$title}" />
+
+<div class="user">
+	<div class="ucenter">
+		<include file="UserCenter/u_left" />
+		<div class="right">
+			<div class="righter">
+			<notempty name="content">
+				<!-- text循环 -->
+				<foreach name="content" item="data">
+				<div class="text">
+					<div class="single"><a class="option a" target="_blank" href="__GROUP__/Index/single/article/{$data.article_id}">查看详细</a><a title="按住此按钮删除文章" class="del_article option a" a_id="{$data.article_id}" href="javascript:;">删除</a></div>
+
+					{$data.content}
+					<p></p>
+					<if condition="data.image neq null">
+						<foreach name="data.image" item="img">
+							<img class="article_image" src="__PUBLIC__{$img.image_link}"><br />
+						</foreach>
+					</if>
+					
+					<div class="status">
+					<if condition="$data.is_show eq '1'">
+						<span class="yes">已通过</span>
+					<elseif condition="$data.is_show eq '-1'" />
+						<span class="no">未通过</span>
+					<else />
+						<span class="pass">待审核</span>
+					</if>
+					</div>
+					<div class="L_bar">
+						<ul>
+						<li class="up"><span class="up_span" a_id="{$data.article_id}"><empty name="data['up']">0<else />{$data.up}</empty></span></li>
+						<li class="down"><span class="down_span" a_id="{$data.article_id}"><empty name="data['down']">0<else />{$data.down}</empty></span></li>
+						<li class="space">{$data.add_time|date="Y-m-d H:i:s",###}</li>
+						</ul>
+					</div>
+				</div>
+				</foreach>
+			<else />
+				<p class="uc_empty">空空如也哦~~~</p>
+			</notempty>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$(function(){
+	//顶和囧
+	up({
+		post_url : '__GROUP__/Index/up'
+	});
+	down({
+		post_url : '__GROUP__/Index/down'
+	});
+	del_article({
+		post_url : '__GROUP__/Index/del',
+		dom : '.del_article'
+	});
+});
+</script>
+<include file="public/foot" />

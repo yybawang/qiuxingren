@@ -1,0 +1,33 @@
+<include file="public/head" charset="utf-8" title='{$title}' />
+
+<div class="user">
+<include file="Usercenter/u_top" />
+	<div class="ucenter">
+		<include file="UserCenter/u_left" />
+		<div class="right">
+			<div class="righter">
+			<notempty name="content">
+				<!-- text循环 -->
+				<foreach name="content" item="data">
+				<div class="text">
+					<div class="single"><a class="option a" target="_blank" href="__GROUP__/article/single/article/{$data.id}">查看详细...</a></div>
+					{$data.content}
+					<p></p>
+					<foreach name="data.image" item="img">
+							<img src="{$img.image_link}" />
+					</foreach>
+					<foreach name="data.comments" item='comments'>
+						<div class="comment_comment"><ul><li class="content">{$comments.content}</li><li class="time">{$comments.add_time|date="Y-m-d H:i:s",###}</li><li class="count">{$key+1}</li></ul></div>
+					</foreach>
+					
+				</div>
+				</foreach>
+			<else />
+				<p class="uc_empty">空空如也哦~~~</p>
+			</notempty>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="clean"></div>
+<include file="public/foot" />

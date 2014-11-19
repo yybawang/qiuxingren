@@ -1,0 +1,40 @@
+<div class="left">
+	<div class="user_info">
+		<a title="个人中心" href="__URL__/center"><img src="{$user_info.pic}" /></a>
+		<p>{$user_info.user_name}</p>
+		<ul>
+			<li><a href="__URL__/article">文章</a></li>
+			<li><a href="__URL__/followers">粉丝</a></li>
+			<li><a href="__URL__/followings">关注</a></li>
+			<li><a href="__URL__/message">留言/小纸条</a></li>
+			<li><a href="__URL__/comment">评论</a></li>
+		</ul>
+	</div>
+	<div class="option">
+		<ul>
+			<li><a title="修改头像和基本信息" href="__URL__/update">修改资料</a></li>
+			<li><a title="修改密码" href="__URL__/repwd">修改密码</a></li>
+		</ul>
+	</div>
+	
+</div>
+<script>
+$(function(){
+	var action = '{$Think.const.ACTION_NAME}';
+	if(action == 'index' || action == 'article'){
+		$('.user_info li:eq(0)').addClass("active");
+	}
+	if(action == 'followers'){
+		$('.user_info li:eq(1)').addClass("active");
+	}
+	if(action == 'followings'){
+		$('.user_info li:eq(2)').addClass("active");
+	}
+	if(action == 'message'){
+		$('.user_info li:eq(3)').addClass("active");
+	}
+	if(action == 'comment'){
+		$('.user_info li:eq(4)').addClass("active");
+	}
+});
+</script>

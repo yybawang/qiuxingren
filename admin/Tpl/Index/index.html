@@ -1,0 +1,14 @@
+<layout name="layout" />
+<div class="iframe_index">
+	<ul>
+	<foreach name="menus" item="menu">
+		<li class="metro">
+			<a href="{$menu.url}" class="metro metro_img_{$menu.class}"><span>{$menu.title}</span>
+			<if condition="$menu.nums neq null">
+			<b title="{$menu.nums}">{$menu.nums}</b>
+			</if>
+			</a>
+		</li>
+	</foreach>
+	</ul>
+</div>

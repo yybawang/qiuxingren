@@ -1,0 +1,107 @@
+<div class="right">
+	<div class="righter">
+	<notempty name="G_u">
+		<div class="user_info">
+			<div class="info">
+				<div class="basic"><!-- 基本信息 -->
+					<div class="right_option">
+						<a class="avator" href="__GROUP__/usercenter/index"><img src="{$G_u.pic}" /></a>
+						<span class="user_name"><a href="__GROUP__/usercenter/index">{$G_u.user_name}</a>
+						<span>
+							<if condition="$G_u.sex eq 1">
+								男
+							<elseif condition="$G_u.sex eq -1" />
+								女
+							<else />
+								不明生物
+							</if>
+							<a target="_blank" href="__GROUP__/usercenter/update">修改资料</a>
+						</span>
+						</span>
+					</div>
+					
+				</div>
+				<h4>个人语录</h4>
+				<div class="resume" title="点击文字直接编辑">
+					<empty name="G_u.resume">
+						<span>咕噜噜~~</span>
+					<else />
+						<span>{$G_u.resume}</span>
+					</empty>
+				</div>
+				<h4>每日签到，<span style="font-size:13px;">规律:<php>echo C('SIGN_INT');</php>~截止</span></h4>
+				<div class="sign">
+					<eq name="G_u.signs.is_sign" value="1">
+					<a href="javascript:;" class="go_sign">签到：{$G_u.signs.sign_jifen}积分</a>
+					<else />
+					<a href="javascript:;" class="disabled">明天：{$G_u.signs.sign_jifen}积分</a>
+					</eq>
+					<span class="sign_info">
+						<span>{$G_u.signs.today}</span>
+						<span>已连续签到 <b class="count">{$G_u.signs.count}</b> 天</span>
+					</span>
+				</div>
+				<h4>本站头衔</h4>
+				<div class="level">
+					<span class="jifen">积分:<span class="jifen_num">{$G_u.sign_jifen}</span></span><span class="level_nick">{$G_u.level.nick}</span><span class="level_num">{$G_u.level.level}</span>
+				</div>
+			</div>
+		</div>
+	</notempty>
+		<h3>网站主题</h3>
+		<div class="theme">
+		<php>
+			$theme = explode(',',C('THEME_LIST'));
+		</php>
+		<foreach name="theme" item="theme_list">
+			<span class="theme_{$theme_list}"><a title="{$theme_list}" href="__GROUP__/{$Think.const.MODULE_NAME}/{$Think.const.ACTION_NAME}/t/{$theme_list}">&nbsp;</a></span>
+		</foreach>
+		</div>
+		<div class="tips">
+			<ul>
+			<li>你造吗？划过用户头像可以关注 Ta 哦！</li>
+			<li>文章图片太小？单击一下图片可以放大缩小哦！</li>
+			<li>翻页太烦？使用 green 主题可以无限下拉看啦！</li>
+			<li>有问题？有建议？反馈给我，我会耐心查看！<a class="a proposal" href="javascript:;"><span>点击反馈</span></a>
+				<textarea placeholder="写完之后，鼠标点击旁边空白处就自动提交啦！" style="width:100%;height:80px;display:none;"></textarea>
+			</li>
+			<li>由于7月17号重写了网站，近期没有时间更新，可能网站很多问题，过了这段时间我在详细改改吧</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<script>
+$(function(){
+	//固定的电梯
+	elevator({
+		speed : 800
+	});
+	
+	//ajax编辑简介
+	click_edit({
+		selecter:'.resume',
+		post_url:'/usercenter/edit_ajax/name/resume'
+	});
+	
+	sign({
+		selecter: '.go_sign'
+	});
+	
+	//ajax编辑简介
+	proposal({
+		selecter:'.proposal',
+		post_url:'/message/proposal'
+	});
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+

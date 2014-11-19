@@ -1,0 +1,75 @@
+<layout name="layout" />
+<!-- 宽 100% -->
+<div class="iframe_user">
+	<table cellpadding="0" cellspacing="1">
+		<tr>
+			<th>编号</th>
+			<th>删</th>
+			<th>用户ID</th>
+			<th>头像</th>
+			<th>昵称</th>
+			<th>email(登录帐号)</th>
+			<th>性别</th>
+			<th>签到信息</th>
+			<th>积分</th>
+			<th>个人语录</th>
+			<th>注册时间</th>
+			<th>注册IP</th>
+			<th>最后登录时间</th>
+			<th>最后登录IP</th>
+			<th>登录次数</th>
+			<th>操作</th>
+		</tr>
+		<foreach name="users" item="user">
+		<tr>
+			<td class="numbers" width="40">{$key+1}</td>
+			<td class="align_center"><input type="checkbox" name="checkbox" value="{$user.user_id}" /></td>
+			<td>{$user.user_id}</td>
+			<td><empty name="user.pic">无<else /><img src="{$user.pic}" height="30" /></empty></td>
+			<td>{$user.user_name}</td>
+			<td>{$user.email}</td>
+			<td><if condition="$user.sex eq 1">男<elseif condition="$user.sex eq -1" />女<else /><font color="#CCC">未填</font></if></td>
+			<td>{$user.sign}</td>
+			<td>{$user.sign_jifen}</td>
+			<td>{$user.resume}</td>
+			<td>{$user.reg_time}</td>
+			<td>{$user.reg_ip}</td>
+			<td>{$user.last_log_time}</td>
+			<td>{$user.last_log_ip}</td>
+			<td>{$user.logins}</td>
+			<td><a class="edit_user" uid="{$user.user_id}" href="javascript:;">编辑</a></td>
+		</tr>
+		</foreach>
+		<tr><td></td><td><a href="javascript:;" id="full_check">全选</a><br /><a href="javascript:;" id="double_del">删除</a></td><td colspan="15">
+			<!-- //这里分页，等下做成form格式 -->
+			{$pager}
+		</td></tr>
+	</table>
+</div>
+
+<script>
+$(function(){
+	full_check({
+		clicker : '#full_check',
+		selecter : '[name=checkbox]'
+	});
+	
+	double_del({
+		clicker : '#double_del',
+		selecter : '[name=checkbox]',
+		model : 'user',
+		field : 'user_id',
+		url : '__GROUP__/index/double_del'
+	});
+	
+	y_pager({
+		selecter : '.y_pager'
+	});
+	
+	edit_user({
+		url : '__GROUP__/user/edit',
+		id_attr	: 'uid'
+	});
+	
+});
+</script>

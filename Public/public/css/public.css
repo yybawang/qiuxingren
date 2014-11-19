@@ -1,0 +1,92 @@
+.theme {
+	float:left;
+	width:270px;
+}
+.theme span {
+	float:left;
+}
+/*官方棕色*/
+.theme_default {
+	border:1px solid #FFFFFF;
+	display:block;
+	width:15px;
+	height:15px;
+	margin:10px 5px;
+	background:#B76904;
+}
+/* 黑色 */
+.theme_black {
+	border:1px solid #FFFFFF;
+	display:block;
+	width:15px;
+	height:15px;
+	margin:10px 5px;
+	background:#000000;
+}
+/*紫色*/
+.theme_purple {
+	border:1px solid #FFFFFF;
+	display:block;
+	width:15px;
+	height:15px;
+	margin:10px 5px;
+	background:#B459D4;
+}
+/* 蓝色 */
+.theme_blue {
+	border:1px solid #FFFFFF;
+	display:block;
+	width:15px;
+	height:15px;
+	margin:10px 5px;
+	background:#3066D6;
+}
+/* 红色 */
+.theme_red {
+	border:1px solid #FFFFFF;
+	display:block;
+	width:15px;
+	height:15px;
+	margin:10px 5px;
+	background:#CF2E2E;
+}
+/* 橙色 */
+.theme_orange {
+	border:1px solid #FFFFFF;
+	display:block;
+	width:15px;
+	height:15px;
+	margin:10px 5px;
+	background:#E95C24;
+}
+/* 绿色 */
+.theme_green {
+	border:1px solid #FFFFFF;
+	display:block;
+	width:15px;
+	height:15px;
+	margin:10px 5px;
+	background:#35A45B;
+}
+/* 灰色 */
+.theme_gray {
+	border:1px solid #FFFFFF;
+	display:block;
+	width:15px;
+	height:15px;
+	margin:10px 5px;
+	background:#B8B8B8;
+}
+.theme span a {
+	display:block;
+	height:100%;
+	width:100%;
+}
+
+/* 弹窗的a 样式 */
+.dialog_login:link,.dialog_login:visited {
+	color:#3366CC;
+}
+.dialog_login:hover {
+	color:#FF8000;
+}

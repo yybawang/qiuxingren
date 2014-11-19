@@ -1,0 +1,52 @@
+/** 仿黑客帝国的错误页 **/
+#dv
+{
+	margin: 0;
+	padding: 0;
+	left:0px;
+	top:0px;
+	height:100%;
+	width:100%;
+	/*background color*/
+	background-color:Black;
+	position:fixed;
+	z-index:-1000;
+}
+/*styles for the texts*/
+g
+{
+	font-smooth: antialiased;
+	background-color: transparent; 
+	-webkit-font-smoothing: antialiased;
+	font-family:Arial, Helvetica, sans-serif;
+	-webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -ms-filter: blur(0px);
+    -o-filter: blur(0px);
+    filter: blur(0px);
+	text-decoration:none;
+	top: -30%;
+	/*text color*/
+	color: #43EF18;
+	z-index: 9999;
+	position: fixed;
+	font-size: 200%;
+	-moz-outline:none;
+	outline:none;
+	-moz-user-select:none;
+	user-select:none;
+	-webkit-user-select:none;
+	cursor:default;
+}
+#st
+{
+
+background: #43ef18;background: -moz-radial-gradient(center, ellipse cover,  #43ef18 0%, #0cb500 100%);background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#43ef18), color-stop(100%,#0cb500));background: -webkit-radial-gradient(center, ellipse cover,  #43ef18 0%,#0cb500 100%); background: -o-radial-gradient(center, ellipse cover,  #43ef18 0%,#0cb500 100%); background: -ms-radial-gradient(center, ellipse cover,  #43ef18 0%,#0cb500 100%);background: radial-gradient(ellipse at center,  #43ef18 0%,#0cb500 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#43ef18', endColorstr='#0cb500',GradientType=1 );
+	width:23%;
+	float:right;
+	background-color:#43EF18;
+	border-radius:10px;
+	z-index:10;
+	position:relative;
+	border: 5px solid;
+}

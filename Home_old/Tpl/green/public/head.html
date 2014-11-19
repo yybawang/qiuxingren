@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>[title]</title>
+<meta content="text/html; charset=[charset]" http-equiv="Content-Type" />
+<meta name="keywords" content="糗星人,糗事百科,糗百,qiuxingren，糗百交友，糗百暗号，糗百笑话，糗百论坛" />
+<meta name="description" content="糗星人,糗事百科,糗百,qiuxingren，糗百交友，糗百暗号，糗百笑话，糗百论坛" />
+<meta name="Generator" content="糗星人,糗事百科,糗百,qiuxingren，糗百交友，糗百暗号，糗百笑话，糗百论坛" /> 
+<meta name="DEscription" content="糗事,XXOO,求带走,囧事,笑话，糗百交友，糗百暗号，糗百笑话，糗百论坛" /> 
+<meta name="Author" content="糗星人，糗百暗号，糗百笑话，糗百论坛" />
+<meta name="Robots" content= "all" />
+<link rel="Bookmark"   href="__ROOT__/favicon.ico" /> <!-- 收藏夹中的图标 -->
+<link rel="shortcut icon" href="__ROOT__/favicon.ico" /> <!-- 地址栏前面的图标 -->
+<link rel="icon" href="__ROOT__/animated_favicon.gif" type="image/gif" /> <!-- 动态Icon图标 -->
+<load href="__PUBLIC__/public/jquery/jquery-1.6.2.js" />	
+<load href="__PUBLIC__/public/jquery/jquery.cookies.2.2.0.js" />
+<load href="__PUBLIC__/public/jquery/lhgdialog.js" />
+<load href="__PUBLIC__/public/jquery/jquery.easing.1.3.js" /><!-- 导航的JQ -->
+<load href="__PUBLIC__/public/css/public.css" />
+<load href="{$Think.const.__ROOT__}{$Think.const.THEME_PATH|substr=1}public/css/index.css" />
+<load href="{$Think.const.__ROOT__}{$Think.const.THEME_PATH|substr=1}public/js/index.js" />
+<!-- 鸟的js和一个css -->
+<load href="{$Think.const.__ROOT__}{$Think.const.THEME_PATH|substr=1}public/js/jquery-ui-1.7.2.spritely.custom.min.js" />
+<load href="{$Think.const.__ROOT__}{$Think.const.THEME_PATH|substr=1}public/js/jquery.spritely-0.2.js" />
+<load href="{$Think.const.__ROOT__}{$Think.const.THEME_PATH|substr=1}public/css/main.css" />
+<load href="{$Think.const.__ROOT__}{$Think.const.THEME_PATH|substr=1}public/js/log.js" />
+</head>
+
+<body>
+	<div class="head" id="container">
+		<div id="stage" class="stage">
+			<div id="tap" class="stage"></div>
+			<div id="bg" class="stage"></div>
+			<div id="clouds" class="stage"></div>
+			<div id="hill2" class="stage"></div>
+			<div id="hill1" class="stage"></div>
+			<div id="logo">http://qiuxingren.com</div>
+		</div>
+		<div id="bird"></div>
+		
+		<div class="header">
+		<div class="text_logo">
+			<ol>
+				<li class="zh">糗星人</li>
+				<li class="pinyin">http://qiuxingren.com</li>
+			<ol>
+		</div>
+			<div class="logo_right">
+			<ol>
+			<li class="user_li">
+				
+				<div class="user_bar">
+					<if condition="$Think.session.tsuser.userid neq null">
+						<div class="login">
+							<a href="__GROUP__/Usercenter/center">{$Think.session.tsuser.username}</a>
+							<a class="new_message" href="__GROUP__/Usercenter/message" style="width:10px;height:25px;background:url(__PUBLIC__/public/images/web_icon.png) no-repeat scroll -76px 7px transparent;position:relative;"><span class="message_num" style="position:absolute;top:-8px;left:20px;">0</span></a>
+							<a href="__GROUP__/User/logout" id="go_out">退出</a>
+						</div>
+					<else />
+					<div class="logout">
+					<a href="__GROUP__/User/login">登陆</a>
+					<a href="__GROUP__/User/register">注册</a>
+					</div>
+					</if>
+				</div>
+			</li>
+			<li class="group_bar"><ul>
+				<li><a target="_blank" title="欢迎进入我的博客" href="__ROOT__/blog">博客</a></li>
+				<li><a target="_blank" title="逛论坛" href="http://bbs.qiuxingren.com">论坛</a></li>
+				<li><a title="糗星人主页" href="__GROUP__/Index/index">主页</a></li>
+			</ul></li>
+			</ol>
+			</div>
+		</div>
+		<div class="nav">
+			<ul class="nav_ul">
+				<li class="down marrow">
+					<p><a href="__GROUP__/Index/hot">精华</a></p>
+					<div class="subtext">
+						<a href="__GROUP__/Index/hot_8">8小时内</a>
+						<a href="__GROUP__/Index/hot">24小时内</a>
+						<a href="__GROUP__/Index/week">一周内</a>
+						<a href="__GROUP__/Index/month">一月内</a>
+					</div>
+				</li>
+				<li class="down real">
+					<p><a href="__GROUP__/Index/imgrand">真相</a></p>
+					<div class="subtext">
+						<a href="__GROUP__/Index/imgrand">硬菜</a>
+						<a href="__GROUP__/Index/pic">时令</a>
+					</div>
+				</li>
+				<li class="index">
+					<p><a href="__GROUP__/Index/index">最新</a></p>
+				</li>
+				<li class="down zone">
+					<p><a href="javascript:void(0)">版区</a></p>
+					<div class="subtext">
+						<a href="__GROUP__/Zone/z1">{$Think.config.z1.word}</a>
+						<a href="__GROUP__/Zone/z2">{$Think.config.z2.word}</a>
+						<a href="__GROUP__/Zone/z3">{$Think.config.z3.word}</a>
+					</div>
+				</li>
+				<li class="down check">
+					<p><a href="__GROUP__/Send/audit">审帖</a></p>
+					<div class="subtext">
+						审核本网站用户的投稿
+					</div>
+				</li>
+				<li class="down put">
+					<p><a href="__GROUP__/Send/send">投稿</a></p>
+					<div class="subtext">
+						您的投稿是对我们的最大支持
+					</div>
+				</li>
+				<li class="down now">
+					<p><a title="实时同步最新，本地不留缓存，以进来网站的时间为准" href="__GROUP__/Now/index">实时最新</a></p>
+					<div class="subtext">
+						<a href="__GROUP__/Now/hot_8">8小时精华</a>
+						<a href="__GROUP__/Now/hot_24">24小时精华</a>
+						<a href="__GROUP__/Now/pic">真相之时令</a>
+						<a href="__GROUP__/Now/imgrank">真相之精华</a>
+					</div>
+				</li>
+				
+				<div class="search">
+					<form action="__GROUP__/Index/search" method="post">
+					<span><input type="text" value="{$Think.post.keyword}" placeholder="搜索糗事关键字" name="keyword" class="k_search" /></span><span><input class="sub" type="submit" value="搜 索" /></span>
+					</form>
+				</div>
+			</ul>
+		</div>
+		
+	</div>
+<script>
+//导航指针
+var action = "{$Think.const.ACTION_NAME}";
+action = action.toLowerCase();
+switch(action){
+	case 'hot':
+	case 'hot_8':
+	case 'week':
+	case 'month': $(".marrow").addClass("on");break;
+	case 'pic':
+	case 'imgrand': $(".real").addClass("on");break;
+	case 'index': $(".index").addClass("on");break;
+	case 'z1':
+	case 'z2':
+	case 'z3': $(".zone").addClass("on");break;
+	case 'audit': $(".check").addClass("on");break;
+	case 'send': $(".put").addClass("on");break;
+	default: $(".nav_ul li").removeClass("on");break;
+}
+$(function(){
+	new_message({
+		user_id : "{$Think.session.tsuser.userid}",
+		post_url : "__GROUP__/User/new_message_ajax"
+	});
+});
+</script>

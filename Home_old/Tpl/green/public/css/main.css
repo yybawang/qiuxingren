@@ -1,0 +1,71 @@
+#logo {
+	/*background: url(../images/spritely_logo.png) 0 0 no-repeat;*/
+	width: 378px;
+	height: 121px;
+	position: absolute;
+	top: 7px;
+	left: 30px;
+	text-indent: -9999px;
+}
+#container  {
+	position:relative;
+}
+#mainContent {
+	padding: 40px 30px 30px 30px;
+}
+#mainContent h1 {
+	text-align: -9999px;
+	height: 0;
+	overflow: hidden;
+	margin: 0;
+}
+#content {
+	margin-right: 250px;
+}
+#sidebar {
+	position: absolute;
+	top: 448px;
+	width: 200px;
+	right: 30px;
+}
+.panel {
+	margin-bottom: 2em;
+}
+#stage {
+	top: 0px;
+	left: 0px;
+	z-index:-1;
+}
+.stage {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-width: 980px;
+	height: 300px;
+	overflow: hidden;
+	padding:0;
+	margin:0;
+}
+#bg {
+	background: #aedfe5 url(../images/sky1.png) 0 0 repeat-x;
+}
+#clouds {
+	background: transparent url(../images/cloud.png) 305px 102px repeat-x;
+}
+#hill2 {
+	background: transparent url(../images/hill2.png) 0 258px repeat-x;
+}
+#hill1 {
+	background: transparent url(../images/hill-with-windmill.png) 0 104px repeat-x;
+}
+#bird {
+	background: transparent url(../images/bird-forward-back.png) 0 0 no-repeat;
+	position: absolute;
+	top: 150px;
+	left: 65px;
+	width: 180px;
+	height: 123px;
+	z-index:2000;
+	cursor: pointer;
+}

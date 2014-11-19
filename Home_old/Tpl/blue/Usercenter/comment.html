@@ -1,0 +1,39 @@
+<include file="public/head" charset="utf-8" title="{$title}" />
+
+<div class="user">
+	<div class="ucenter">
+		<include file="UserCenter/u_left" />
+		<div class="right">
+			<div class="righter">
+			<notempty name="comment">
+				<!-- text循环 -->
+				<foreach name="comment" item="data">
+				<div class="text">
+					<div class="single"><a class="option a" target="_blank" href="__GROUP__/Index/single/article/{$data.article_id}">查看详细...</a></div>
+					
+					{$data.content}
+					<p></p>
+					<if condition="$data.image neq null">
+						<foreach name="data.image" item="img">
+							<if condition="$data.former_id gt 0" >
+								<img src="{$img.image_link}" />
+							<else />
+								<img src="__PUBLIC__{$img.image_link}" />
+							</if>
+						</foreach>
+					</if>
+					<foreach name="data.comments" item='comments'>
+						<div class="comment_comment"><ul><li class="content">{$comments.comment_content}</li><li class="time">{$comments.comment_time|date="Y-m-d H:i:s",###}</li><li class="count">{$key+1}</li></ul></div>
+					</foreach>
+					
+				</div>
+				</foreach>
+			<else />
+				<p class="uc_empty">空空如也哦~~~</p>
+			</notempty>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="clean"></div>
+<include file="public/foot" />

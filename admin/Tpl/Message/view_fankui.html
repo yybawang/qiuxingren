@@ -1,0 +1,62 @@
+<layout name="layout" />
+<!-- 宽 100% -->
+<div class="iframe_Ip">
+	<table cellpadding="0" cellspacing="1">
+		<tr>
+			<th>编号</th>
+			<th>删</th>
+			<th>ID</th>
+			<th>用户ID</th>
+			<th>内容</th>
+			<th>添加时间</th>
+			<th>添加者IP</th>
+			<th>已/未读</th>
+			<th>可回复</th>
+		</tr>
+		<foreach name="datas" item="d">
+		<tr>
+			<td class="numbers" width="40">{$key+1}</td>
+			<td class="align_center"><input type="checkbox" name="checkbox" value="{$d.message_id}" /></td>
+			<td>{$d.message_id}</td>
+			<td>{$d.user_id}</td>
+			<td>{$d.content}</td>
+			<td>{$d.add_time}</td>
+			<td>{$d.add_ip}</td>
+			<td><if condition="$d.is_read eq 0">未读<else />已读</if></td>
+			<td><if condition="$d.user_id gt 1"><a class="reply_fankui" uid="{$d.user_id}" href="javascript:;">回复</a><else />不</if></td>
+		</tr>
+		</foreach>
+		<tr><td></td><td><a href="javascript:;" id="full_check">全选</a><br /><a href="javascript:;" id="double_del">删除</a></td>
+		<td colspan="7">
+			{$pager}
+		</td></tr>
+	</table>
+</div>
+
+<script>
+$(function(){
+	full_check({
+		clicker : '#full_check',
+		selecter : '[name=checkbox]'
+	});
+	
+	double_del({
+		clicker : '#double_del',
+		selecter : '[name=checkbox]',
+		model : 'message',
+		field : 'message_id',
+		url : '__GROUP__/index/double_del'
+	});
+	
+	y_pager({
+		selecter : '.y_pager'
+	});
+	
+	reply_fankui({
+		selecter : '.reply_fankui',
+		url : '__GROUP__/message/replay_fankui'
+	});
+	
+	
+});
+</script>

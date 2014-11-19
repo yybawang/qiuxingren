@@ -1,0 +1,38 @@
+<include file="public/head" charset="utf-8"  title='{$title}' />
+
+<div class="audit">
+	<div class="auditer">
+		<if condition="$content eq null">
+			<div class="null">
+				悲剧，被审核完了
+			</div>
+		<else />
+		<div class="content">
+			<div class="ithink">我觉得吧，这件糗事....</div>
+			<div class="text">{$content.content}
+			<if condition="$content.image neq null">
+			<foreach name="content.image" item="img">
+				<div><img width="300" src="{$img.image_link}" /></div>
+			</foreach>
+			</if>
+			</div>
+		</div>
+		<div class="option">
+			<a action="yes" a_id="{$content.article_id}"><span class="yes"></span><p>朕准了</p></a>
+			<a action="no" a_id="{$content.article_id}"><span class="no"></span><p>推下去斩了</p></a>
+			<a action="pass" a_id="{$content.article_id}"><span class="pass"></span><p>退朝,下次再议</p></a>
+		</div>
+		</if>
+	</div>
+</div>
+<script>
+$(function(){
+	//审帖的事件
+	audit({
+		post_url : '__GROUP__/Send/check',
+		public_dir : '__PUBLIC__'
+	});
+});
+</script>
+<div class="clean"></div>
+<include file="public/foot" />

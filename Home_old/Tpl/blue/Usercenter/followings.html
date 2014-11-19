@@ -1,0 +1,35 @@
+<include file="public/head" charset="utf-8" title="{$title}" />
+
+<div class="user">
+	<div class="ucenter">
+		<include file="UserCenter/u_left" />
+		<div class="follow">
+			<div class="follower">
+			<notempty name="user_info">
+				<!-- text循环 -->
+				<foreach name="user_info" item="data">
+					<div class="followers">
+						<a class="get_user_info" u_id="{$data.user_id}" href="javascript:;"><img class="pic" src="{$data.pic}" /></a>
+						<span class="user_name"><a class="a" href="__URL__/user_info">{$data.user_name}</a></span>
+						<span class="date">{$data.add_time}</span>
+					</div>
+				</foreach>
+			<else />
+				<p class="uc_empty">空空如也哦~~~</p>
+			</notempty>
+
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$(function(){
+	//划过显示用户信息
+	user_info({
+		dom : '.get_user_info',
+		public_dir : '__PUBLIC__',
+		post_url : '__GROUP__/UserCenter/user_info_ajax'
+	});
+});
+</script>
+<include file="public/foot" />

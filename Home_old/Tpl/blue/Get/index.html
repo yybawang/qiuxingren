@@ -1,0 +1,22 @@
+<include file="public/head" charset="utf-8" title="获取源数据" />
+<div id="timeout"></div>
+<foreach name="content" item="vo" >
+	{$key+1}---原ID：{$vo.former_id}---原用户ID：{$vo.former_user_id}---原用户名：{$vo.former_user_name}<br />{$vo.content}<p />
+		<if condition="$vo.image_link neq null">
+			{$vo.image_link}
+		</if>
+</foreach>
+<script>
+var timeout = parseInt("{$timeout}");
+jishi(timeout*60/1000);
+function myrefresh() 
+{ 
+	window.location.reload(); 
+}
+function jishi(time){
+	$("#timeout").text("剩余秒数约:"+time);
+	setTimeout(function(){jishi(time-1)},1000);
+}
+setTimeout('myrefresh()',timeout*60); //指定三分钟刷新一次
+</script>
+<include file="public/foot" />

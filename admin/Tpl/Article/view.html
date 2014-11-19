@@ -1,0 +1,80 @@
+<layout name="layout" />
+<!-- 宽 100% -->
+<div class="iframe_article">
+	<table cellpadding="0" cellspacing="1" width="1700">
+		<tr>
+			<th>编号</th>
+			<th>删</th>
+			<th>文章ID</th>
+			<th>用户ID</th>
+			<th>糗百用户ID</th>
+			<th>糗百用户昵称</th>
+			<th>头像</th>
+			<th width="400">内容</th>
+			<th>图片</th>
+			<th>Up</th>
+			<th>Down</th>
+			<th>添加时间</th>
+			<th>通过时间</th>
+			<th>Zone</th>
+			<th>是否显示</th>
+		</tr>
+		<foreach name="articles" item="article">
+		<tr>
+			<td class="numbers" width="40">{$key+1}</td>
+			<td class="align_center"><input type="checkbox" name="checkbox" value="{$article.article_id}" /></td>
+			<td>{$article.article_id}</td>
+			<td>{$article.user_id}</td>
+			<td>{$article.former_user_id}</td>
+			<td>{$article.former_user_name}</td>
+			<td><empty name="article.pic">无<else /><img src="{$article.pic}" width="30" /></empty></td>
+			<td>{$article.content}</td>
+			<td>
+				<foreach name="article.images" item="image">
+					<if condition="$article.former_id elt 0">
+						<a class="zoom" href="__PUBLIC__{$image.image_link}"><img width="50" src="__PUBLIC__{$image.image_link}" /></a>
+					<else />
+						<a class="zoom" href="{$image.image_link}"><img width="50" src="{$image.image_link}" /></a>
+					</if>
+				</foreach>
+			</td>
+			<td>{$article.up}</td>
+			<td>{$article.down}</td>
+			<td>{$article.add_time}</td>
+			<td>{$article.check_time}</td>
+			<td>{$article.zone_text}</td>
+			<td><if condition="$article.is_show eq 1">显示<elseif condition="$article.is_show eq -1" /><span class="red">隐藏</span><else /><span class="red">待审核</span></if></td>
+		</tr>
+		</foreach>
+		<tr><td></td><td><a href="javascript:;" id="full_check">全选</a><br /><a href="javascript:;" id="double_del">删除</a></td><td colspan="13">
+			<!-- //这里分页，等下做成form格式 -->
+			{$pager}
+		</td></tr>
+	</table>
+</div>
+
+<script>
+$(function(){
+	full_check({
+		clicker : '#full_check',
+		selecter : '[name=checkbox]'
+	});
+	
+	double_del({
+		clicker : '#double_del',
+		selecter : '[name=checkbox]',
+		model : 'article',
+		field : 'article_id',
+		url : '__GROUP__/index/double_del'
+	});
+	
+	y_pager({
+		selecter : '.y_pager'
+	});
+	
+	img_view({
+		selecter : 'a.zoom'
+	});
+	
+});
+</script>

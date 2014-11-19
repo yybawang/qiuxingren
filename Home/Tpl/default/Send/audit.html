@@ -1,0 +1,29 @@
+<include file="public/head" charset="utf-8"  title='{$title}' />
+
+<div class="audit">
+	<div class="auditer">
+		<div class="content">
+			<div class="ithink">我觉得吧，这件糗事....</div>
+			<div class="text">{$content.content}
+			<foreach name="content.image" item="img">
+				<div><img width="400" src="{$img.image_link}" /></div>
+			</foreach>
+			</div>
+		</div>
+		<div class="option">
+			<a action="yes" a_id="{$content.id}"><span class="yes"></span><p>好笑</p><i><i></i></i></a>
+			<a action="no" a_id="{$content.id}"><span class="no"></span><p>滚粗</p><i><i></i></i></a>
+			<a action="pass" a_id="{$content.id}"><span class="pass"></span><p>不清楚,下次再说</p><i><i></i></i></a>
+		</div>
+	</div>
+</div>
+<script>
+$(function(){
+	//审帖的事件
+	audit({
+		post_url : '/send/audit_check'
+	});
+});
+</script>
+<div class="clean"></div>
+<include file="public/foot" />

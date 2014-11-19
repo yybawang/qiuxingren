@@ -1,0 +1,30 @@
+<include file="public/head" charset="utf-8" title="{$title}" />
+
+<div class="user">
+	<div class="ucenter">
+		<include file="UserCenter/u_left" />
+		<div class="right">
+			<div class="righter">
+				<form action="__URL__/update_check" enctype="multipart/form-data" method="post">
+					<div class="user_update">邮&emsp;箱：<span>{$user_info.email}</span><input class="input_text" type="hidden" name="email" value="{$user_info.email}" /></div>
+					<div class="user_update">用户名：<input class="input_text" type="text" name="user_name" value="{$user_info.user_name}" /></div>
+					<div class="user_update">性&emsp;别：
+						<input type="radio" name="sex" value="1" <eq name="user_info.sex" value="1">checked="checked"</eq> />男
+						<input type="radio" name="sex" value="-1" <eq name="user_info.sex" value="-1">checked="checked"</eq> />女
+						<input type="radio" name="sex" value="0" <eq name="user_info.sex" value="0">checked="checked"</eq> />不确定
+					</div>
+					<div class="user_update">语&emsp;录：<textarea type="text" name="resume" style="width:200px;height:40px;">{$user_info.resume}</textarea></div>
+					<br />
+					<div class="user_update pic">头&emsp;像
+						<input type="file" name="pic" /><br />
+						<img width="150" src="{$user_info.pic}" />
+					</div>
+					<div class="user_update sub"><input id="sub" type="submit" value="提 交" /></div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="clean"></div>
+<include file="public/foot" />

@@ -1,0 +1,28 @@
+<include file="public/head" charset="utf-8" title="{$title}" />
+
+<div class="user">
+	<div class="ucenter">
+		<include file="UserCenter/u_left" />
+		<div class="right">
+			<div class="righter">
+				<form action="__URL__/change" enctype="multipart/form-data" method="post">
+					
+					<div class="email">邮&emsp;箱：<span>{$user.email}</span></div>
+					<div class="user_name">用户名：<input type="text" name="user_name" value="{$user.user_name}" /></div>
+					<div class="pic">头&emsp;像
+					<if condition="$user.pic">
+						<input type="file" name="pic" /><br />
+						<img width="150" src="__PUBLIC__/{$user.pic}" />
+					<else />
+						<input type="file" name="pic" />
+					</if>
+					</div>
+					<div class="sub"><input id="sub" type="submit" value="提交" /></div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="clean"></div>
+<include file="public/foot" />

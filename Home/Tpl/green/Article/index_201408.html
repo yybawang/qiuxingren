@@ -1,0 +1,107 @@
+<include file="public/head" charset="utf-8" title="{$title}" />
+
+
+<div class="content content_201408">
+	<div class="left">
+		<foreach  name="article_data" item="data" >
+		<div class="L_content other_article">
+			<div class="user_info">
+				<span class="user_pic"><img class="pic_img" src="{$data.pic}" />
+				<notempty name="data.former_user_name">
+					<span class="guanzhu" title="关注 Ta，成为 Ta 的粉丝！"></span>
+				</notempty>
+				</span>
+				<span class="former_user_name">
+				<notempty name="data.former_user_name">
+				<a u_id="{$data.former_user_id}" title="发送小纸条" href="javascript:;">{$data.former_user_name}</a></span>
+				<else />
+					匿名用户发表
+				</notempty>
+			</div>
+			<div class="article_info">
+			<div class="text">
+			<span class="san_jiao_top"></span>
+			<span class="san_jiao">∠</span>
+			<span class="san_jiao_bottom"></span>
+			<div class="fun_title">{$data.title}</div>
+			<div class="fun_text">{$data.content}</div>
+				<foreach  name="data.image" item="img" >
+				<div class="L_image">
+				<a title="糗星人" alt="糗星人，图片正在加载中">
+					<img src="{$img.image_link}" />
+				</a>
+				</div>
+				</foreach>
+			</div>
+			<!-- 一些文字操作，顶，留言 -->
+			<div class="L_bar">
+				<php>$cookie_article_has = cookie('article_has');$has = $cookie_article_has[$data['id']]</php>
+				<ul>
+				<notempty name="has">
+					<li class="up has"><span class="up_span" title="已经顶过该糗事了" a_id="{$data.id}">{$data.up}</span></li>
+					<li class="down has"><span class="down_span" title="已经顶过该糗事了" a_id="{$data.id}">{$data.down}</span></li>
+				<else />
+					<li class="up"><span class="up_span" a_id="{$data.id}">{$data.up}</span></li>
+					<li class="down"><span class="down_span" a_id="{$data.id}">{$data.down}</span></li>
+				</notempty>
+				<li class="space">{$data.add_time|format_time}</li>
+				<li class="comment" a_id="{$data.id}"><span on="0">评论 {$data.comment_count}</span></li>
+				</ul>
+			</div>
+			</div>
+		</div>
+		</foreach >
+		<div class="load"><span class="loadimg"></span><span class="loadtext">Loading...</span><i class="loadbar"></i></div>
+	</div>
+	<include file="public/index_right" />
+</div>
+
+
+<script>
+$(function(){
+	/* //左右翻页
+	trun_page({
+		page_num : "{$pages.page_num}",
+		page : "{$Think.get.page}"
+	});
+	//分页init
+	page_init({
+		page_num : "{$pages.page_num}",
+		article_num : "{$pages.num}",
+		this_page : "{$Think.get.page}",
+		action : "__ACTION__"
+	});
+	*/
+	//显示留言
+	get_comment({
+		post_url : '__GROUP__/article/comment',
+		user_url : '__GROUP__/user/user_info'
+	});
+	//提交留言
+	send_comment({
+		post_url : '__GROUP__/article/add_comment',
+	});
+	//小纸条
+	message({
+		post_url : "/message/send"
+	});
+	//顶和囧
+	up({
+		post_url : '__GROUP__/article/up'
+	});
+	down({
+		post_url : '__GROUP__/article/down'
+	});
+	// 瀑布流加载内容
+	next_page_201408({
+		post_url : '__ACTION__',
+	});
+	//关注用户
+	follow({
+		dom : '.user_info .guanzhu',
+		post_url : '/follow/following'
+	});
+	
+});
+</script>
+<include file="public/foot" />

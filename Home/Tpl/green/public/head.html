@@ -1,0 +1,140 @@
+<include file="public/head_top" charset="[charset]" title="[title]" />
+
+<body>
+	<div class="head" id="container">
+		<div id="stage" class="stage">
+			<div id="tap" class="stage"></div>
+			<div id="bg" class="stage"></div>
+			<div id="clouds" class="stage"></div>
+			<div id="hill2" class="stage"></div>
+			<div id="hill1" class="stage"></div>
+			<div id="logo">http://www.qiuxingren.com</div>
+		</div>
+		<!-- <div id="bird"></div>  暂时不要鸟 -->
+		
+		<div class="header">
+		<div class="text_logo">
+			<ol>
+				<li class="zh">糗星人</li>
+				<li class="pinyin">http://www.qiuxingren.com</li>
+			<ol>
+		</div>
+			<div class="logo_right">
+			<ol>
+			<li class="user_li">
+				
+				<div class="user_bar">
+						<!-- 登陆 -->
+						<div class="login" <empty name="G_u">style="display:none;"</empty>>
+							<a class="username" href="__GROUP__/usercenter/index">{$G_u.user_name}</a>
+							<a class="new_message" target="_blank" href="__GROUP__/usercenter/message" style="width:10px;height:25px;background:url(__PUBLIC__/public/images/web_icon.png) no-repeat scroll -76px 7px transparent;position:relative;"><span class="message_num" style="position:absolute;top:-8px;left:20px;">0</span></a>
+							<a href="__GROUP__/user/logout" id="go_out">退出</a>
+						</div>
+						<!-- 登出 -->
+						<div class="logout" <notempty name="G_u">style="display:none;"</notempty>>
+						<a href="__GROUP__/user/login" class="head_login">登陆</a>
+					<a href="__GROUP__/user/register" class="head_register">注册</a>
+						</div>
+				</div>
+			</li>
+			<li class="group_bar"><ul>
+				<li><a target="_blank" title="欢迎进入我的博客" href="__ROOT__/blog" onclick="alert('暂无');return false;">博客</a></li>
+				<li><a target="_blank" title="逛论坛" href="http://bbs.qiuxingren.com" onclick="alert('暂无');return false;">论坛</a></li>
+				<li><a title="糗星人主页" href="__GROUP__/article/index">主页</a></li>
+			</ul></li>
+			</ol>
+			</div>
+		</div>
+		<div class="nav">
+			<ul class="nav_ul">
+				<li class="down marrow">
+					<p><a href="__GROUP__/article/hot_24">精华</a></p>
+					<div class="subtext">
+						<a href="__GROUP__/article/hot_8">8小时内</a>
+						<a href="__GROUP__/article/hot_24">24小时内</a>
+						<a href="__GROUP__/article/hot_week">一周内</a>
+						<a href="__GROUP__/article/hot_month">一月内</a>
+					</div>
+				</li>
+				<li class="real">
+					<p><a href="__GROUP__/article/imgrand">真相</a></p>
+					<!-- <div class="subtext">
+						<a href="__GROUP__/article/imgrand">硬菜</a>
+						<a href="__GROUP__/article/pic">时令</a>
+					</div> -->
+				</li>
+				<li class="index">
+					<p><a href="__GROUP__/article/index">最新</a></p>
+				</li>
+				<!-- <li class="down zone">
+					<p><a href="javascript:void(0)">版区</a></p>
+					<div class="subtext">
+					<foreach name="Think.config.ZONE" item="conf" key="ck">
+						<a href="__GROUP__/zone/zone/zone/{$ck+1}">{$conf.word}</a>
+					</foreach>
+					</div>
+				</li> -->
+				<li class="check">
+					<p><a href="__GROUP__/send/audit">审帖</a></p>
+					
+				</li>
+				<li class="put">
+					<p><a href="__GROUP__/send/send">投稿</a></p>
+					
+				</li>
+				<!-- <li class="down now">
+					<p><a title="实时同步最新，本地不留缓存，以进来网站的时间为准" href="__GROUP__/now/index">实时最新</a></p>
+					<div class="subtext">
+						<a href="__GROUP__/now/hot_8">8小时精华</a>
+						<a href="__GROUP__/now/hot_24">24小时精华</a>
+						<a href="__GROUP__/now/pic">真相之时令</a>
+						<a href="__GROUP__/now/imgrank">真相之精华</a>
+					</div>
+				</li> -->
+				
+				<div class="search">
+					<form action="__GROUP__/article/search" method="post">
+					<span><input type="text" value="{$Think.post.keyword}" placeholder="搜索糗事关键字" name="keyword" class="k_search" /></span><span><input class="sub" type="submit" value="搜 索" /></span>
+					</form>
+				</div>
+			</ul>
+		</div>
+		
+	</div>
+<script>
+//导航指针
+GROUP = '__GROUP__';
+PUBLIC = '__PUBLIC__';
+THEME_PATH = '{$Think.const.__ROOT__}{$Think.const.THEME_PATH|substr=1}';
+var action = "{$Think.const.MODULE_NAME}_{$Think.const.ACTION_NAME}";
+action = action.toLowerCase();
+switch(action){
+	case 'article_hot_8':
+	case 'article_hot_24':
+	case 'article_hot_week':
+	case 'article_hot_month': $(".marrow").addClass("on");break;
+	case 'article_pic':
+	case 'article_imgrand': $(".real").addClass("on");break;
+	case 'article_index':
+	case 'article_late': $(".index").addClass("on");break;
+	case 'zone_zone': $(".zone").addClass("on");break;
+	case 'send_audit': $(".check").addClass("on");break;
+	case 'send_send': $(".put").addClass("on");break;
+	case 'now_index':
+	case 'now_hot_8':
+	case 'now_hot_24':
+	case 'now_pic':
+	case 'now_imgrank':
+	case 'now_late': $(".now").addClass("on");break;
+	default: $(".nav_ul li").removeClass("on");break;
+}
+$(function(){
+	new_message({
+		post_url : "/user/new_message_ajax"
+	});
+});
+</script>
+
+
+
+

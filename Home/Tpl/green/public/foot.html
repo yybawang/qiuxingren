@@ -1,0 +1,92 @@
+<div class="foot">
+	<div class="friend">
+		<ul class="title"><li>FriendLinks 友情链接</li></ul>
+		<ul class="link">
+			<li><a target="_blank" href="http://www.cms789.com">cms资源网</a></li>
+			<li><a target="_blank" href="http://www.cms789.com">cms资源网</a></li>
+			<li><a target="_blank" href="http://www.cms789.com">cms资源网</a></li>
+			<li><a target="_blank" href="http://www.cms789.com">cms资源网</a></li>
+			<li><a target="_blank" href="http://www.cms789.com">cms资源网</a></li>
+			<li><a target="_blank" href="http://www.cms789.com">cms资源网</a></li>
+		</ul>
+	</div>
+	<div class="footer">
+		<div class="ad">
+		</div>
+		
+		<div class="help">
+				<a href="__GROUP__/Article/about">关于我们</a>
+				<a href="__GROUP__/Article/state">负责声明</a>
+				<a href="__GROUP__/Article/joinus">加入我们</a>
+				<a href="__GROUP__/Article/proposal">在线反馈</a>
+				<a href="__GROUP__/Article/app">安卓客户端</a>
+		</div>
+		
+		<div class="copyright">
+		<a>© qiuxingren.com  鄂ICP备76546728号-4</a>
+		
+		<!-- <script language="javascript" type="text/javascript" src="http://js.users.51.la/16812026.js"></script>
+		<noscript><a href="http://www.51.la/?16812026" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/16812026.asp" style="border:none" /></a></noscript>
+		<script type="text/javascript">
+			//百度统计代码
+			var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff09af1a94883d1925005ce91ef5939ce' type='text/javascript'%3E%3C/script%3E"));
+		</script> -->
+		</div>
+	</div>
+</div>
+
+<div class="jump">
+	<ul>
+		<empty name="G_u">
+			<li><span class="go_login"><img src="{$Think.const.__ROOT__}{$Think.const.THEME_PATH|substr=1}public/images/back_user.png" height=20 /></span><a class="head_login" href="__GROUP__/user/login">登&emsp;陆</a></li>
+		<else />
+			<!-- 显示用户名 -->
+		</empty>
+		<li class="gotop">到顶部</li>
+		<li class="godown">到底部</li>
+	</ul>
+</div>
+<!-- 这里放登陆的弹窗，里面有两个选项卡，一个登陆一个注册 -->
+<div class="pop_big">
+<div class="pop_bg"></div>
+<div class="pop_login">
+	<div class="parent">
+		<div class="title">糗星人</div>
+		<div class="tab"><ul><li class="active">登陆</li><li>注册</li></ul></div>
+		<div class="tab_input">
+		<div class="login" action="login"><!-- 输入框 第一个li是颜色，第二个是图标，第三个是输入框-->
+		<form id="login_form" action="__GROUP__/user/login_ajax">
+			<div><ul class="username email"><li class="back_color"></li><li class="back_image"></li><li class="input"><input placeholder="请使用邮箱登陆" type="text" name="email" /></li></ul></div>
+			<div><ul class="password"><li class="back_color"></li><li class="back_image"></li><li class="input"><input placeholder="输入您的密码" type="password" name="password" /></li></ul></div>
+			<div class="log_in"><span class="tips">　</span><span class="tips"></span><span class="tips"></span><input class="submit" type="submit" value="登&emsp;陆" /></div>
+		</form>
+		</div>
+		<div class="register" action="register">
+		<form id="register_form" action="__GROUP__/user/register_ajax">
+			<div><ul class="username email"><li class="back_color"></li><li class="back_image"></li><li class="input"><input type="text" name="email" placeholder="请使用邮箱注册" /></li></ul></div>
+			<div><ul class="username"><li class="back_color"></li><li class="back_image"></li><li class="input"><input type="text" name="user_name" placeholder="输入一个你喜欢的别名" /></li></ul></div>
+			<div><ul class="password"><li class="back_color"></li><li class="back_image"></li><li class="input"><input type="password" name="password" placeholder="输入您要设置的密码" /></li></ul></div>
+			<div><ul class="password"><li class="back_color"></li><li class="back_image"></li><li class="input"><input type="password" name="repassword" placeholder="确认您设置的密码" /></li></ul></div>
+			<div class="log_in reg_in"><span class="tips">　</span><span class="tips"></span><span class="tips"></span><span class="tips"></span><span class="tips"></span><input class="submit" type="submit" value="注&emsp;册" /></div>
+		</form>
+		</div>
+		
+		</div>
+	</div>
+</div>
+</div>
+<script>
+$(function(){
+	fix_footer({
+		center_dom : '.articler,.ucenter,.user_login,.sender,.auditer,.content'
+	});
+	
+	$('.pop_login .parent').anyDrag({
+		obj:'.title',
+		alpha:0.8
+	});
+});
+</script>
+</body>
+</html>

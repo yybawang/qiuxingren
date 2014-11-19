@@ -1,0 +1,19 @@
+<include file="public/head" charset="utf-8" title="{$title}" />
+	<div class="user_log">
+		<div class="user_login">
+			<div class="left">
+				<form action="__GROUP__/user/register_ajax" method="post" id="register_form">
+					<table cellpadding="0" border="0" width="100%" cellspacing="0">
+						<tr><td class="title">&emsp;邮&emsp;箱:</td><td><input type="text" name="email" /></td><td class="tips">此邮箱为您的唯一登陆账号</td></tr>
+						<tr><td class="title">&emsp;&emsp;昵称:</td><td><input type="text" name="user_name" /></td><td class="tips">输入一个你喜欢的别名！</td></tr>
+						<tr><td class="title">&emsp;密&emsp;码:</td><td><input type="password" name="password" /></td><td class="tips"></td></tr>
+						<tr><td class="title">确认密码:</td><td><input type="password" name="repassword" /></td><td class="tips"></td></tr>
+						<!--<tr><td class="title">呢&emsp;称:</td><td><input type="text" name="nickname" /></td><td class="tips"></td></tr>-->
+						<tr><td colspan="2"><input type="submit" id="subm" value="注册" /></td><td class="tips"></td></tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+
+<include file="public/foot" />

@@ -1,0 +1,17 @@
+<include file="public/head" charset="utf-8" title="{$title}" />
+	<div class="user_log">
+		<div class="user_login">
+			<div class="left">
+				<form action="__URL__/login_ajax" method="post" id="login_form">
+					<table cellpadding="0" border="0" width="100%" cellspacing="0">
+						<tr><td class="title">邮&emsp;箱:</td><td><input type="text" name="email" /></td><td class="tipss">此邮箱为您的唯一登陆账号</td></tr>
+						<tr><td class="title">密&emsp;码:</td><td><input type="password" name="password" /></td><td class="tipss"></td></tr>
+						<!---<tr><td colspan="2"><input type="checkbox" name="week" id="week" value="1" /><label for="week">一周内免登陆</label></td></tr>-->
+						<tr><td colspan="2"><input type="submit" id="subm" value="登陆" /></td><td class="tipss"></td></tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+
+<include file="public/foot" />

@@ -1,0 +1,57 @@
+<layout name="layout" />
+<!-- 宽 100% -->
+<div class="iframe_image">
+	<!-- <table cellpadding="0" cellspacing="1">
+		<tr>
+			<th>编号</th>
+			<th>删</th>
+			<th>图片ID</th>
+			<th>对应文章ID</th>
+			<th>图片</th>
+		</tr>
+		<foreach name="images" item="image">
+		<tr>
+			<td class="numbers" width="40">{$key+1}</td>
+			<td class="align_center"><input type="checkbox" name="checkbox" value="{$image.image_id}" /></td>
+			<td>{$image.image_id}</td>
+			<td>{$image.in_article_id}</td>
+			<td><a class="zoom" href="{$image.image_link}"><img height="50" src="{$image.image_link}" /></a></td>
+		</tr>
+		</foreach>
+		<tr><td></td><td><a href="javascript:;" id="full_check">全选</a></td>
+		<td colspan="11">
+			{$pager}
+		</td></tr>
+	</table> -->
+	<table cellpadding="0" cellspacing="1">
+	<tr>
+	<foreach name="images" item="image">
+		<if condition="$key neq 0 and $key % 5 eq 0"></tr><tr></if>
+		<td><a class="zoom hover_article" status="0" aid="{$image.article_id}" href="{$image.image_link}"><img width="300" src="{$image.image_link}" /><span class="article"><span></span></span></a></td>
+	</foreach>
+	</td></tr>
+	<tr><td colspan="5">{$pager}</td></tr>
+	</table>
+</div>
+
+<script>
+$(function(){
+	full_check({
+		clicker : '#full_check',
+		selecter : '[name=checkbox]'
+	});
+	
+	y_pager({
+		selecter : '.y_pager'
+	});
+	
+	img_view({
+		selecter : 'a.zoom'
+	});
+	
+	hover_article({
+		selecter : '.hover_article',
+		url : '__GROUP__/image/hover_article'
+	});
+});
+</script>
